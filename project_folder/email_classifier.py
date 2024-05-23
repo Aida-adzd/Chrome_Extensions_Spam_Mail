@@ -1,10 +1,11 @@
 import numpy as np
+import os
 import pandas as pd
+from joblib import dump, load
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
-
 def load_data(csv_file_path):
     try:
         with open(csv_file_path, 'r', encoding='utf-8') as file:
@@ -29,16 +30,22 @@ def preprocess_data(df):
     return X, Y
 
 def train_model(X_train, Y_train):
-    # Feature extraction using TF-IDF
-    feature_extraction = TfidfVectorizer(min_df=1, stop_words='english', lowercase=True)
-    x_train_feature = feature_extraction.fit_transform(X_train)
-    
-    # Train the model
-    lrm = LogisticRegression()
-    lrm.fit(x_train_feature, Y_train)
-    
-    return lrm, feature_extraction
+    # Check if model is already trained
+    if os.path.exists('model.joblib'):
+        lrm, feature_extraction = load('model.joblib')
+    else:
+        # Feature extraction using TF-IDF
+        feature_extraction = TfidfVectorizer(min_df=1, stop_words='english', lowercase=True)
+        x_train_feature = feature_extraction.fit_transform(X_train)
 
+        # Train the model
+        lrm = LogisticRegression()
+        lrm.fit(x_train_feature, Y_train)
+
+        # Save the model
+        dump((lrm, feature_extraction), 'model.joblib')
+
+    return lrm, feature_extraction
 def evaluate_model(model, X_test, Y_test):
     # Use the model for predictions
     x_test_feature = model[1].transform(X_test)
@@ -62,7 +69,7 @@ def classify_email(input_mail, model):
         return "Spam mail"
 
 def get_text(text):
-    csv_file_path = r"/Users/aidaz/Desktop/Spam_or_Ham/project_folder/mail_data.csv"
+    csv_file_path = r"D:\Amir\Uni\osoltarahi_narmafzar\project\Chrome_Extensions_Spam_Mail\project_folder\mail_data.csv"
     df = load_data(csv_file_path)
     if df is not None:
         X, Y = preprocess_data(df)

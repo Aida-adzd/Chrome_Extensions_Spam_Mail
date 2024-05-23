@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
-from email_classifier import get_text
-
+from main import resualt
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -9,7 +8,7 @@ def index():
 
     if request.method == 'POST':
         email = request.form['email']
-        result = get_text(email)
+        result = resualt(email)
         
     elif result is None or result == "":
         result = None
