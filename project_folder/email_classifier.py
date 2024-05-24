@@ -4,7 +4,7 @@ from joblib import dump, load
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 
-csv_file_path = r"D:\Amir\Uni\osoltarahi_narmafzar\project\AmirBasutiFork\Chrome_Extensions_Spam_Mail\project_folder\final.csv"
+csv_file_path = r"/Users/aidaz/PycharmProjects/Project/Chrome_Extensions_Spam_Mail/project_folder/final.csv"
 
 
 def load_data(csv_file_path):
@@ -18,19 +18,17 @@ def load_data(csv_file_path):
 
 def preprocess_data(df):
     df = df.fillna('')  # Replace NaN with empty string
-    # df['Category'] = df['Category'].apply({'ham': 0, 'spam': 1}.get)
     return df['Message'], df['Category']
 
 
-def train_model(X_train, Y_train):
+def train_model(messages, categories):
     vectorizer = TfidfVectorizer(min_df=1, stop_words='english', lowercase=True)
-    x_train_transformed = vectorizer.fit_transform(X_train)
+    messages_transformed = vectorizer.fit_transform(messages)
 
     model = LogisticRegression()
-    model.fit(x_train_transformed, Y_train)
+    model.fit(messages_transformed, categories)
 
     return model, vectorizer
-
 
 def classify_email(input_mail, model):
     input_data = model[1].transform([input_mail])
@@ -42,24 +40,18 @@ def create_model(csv_file_path):
     if not os.path.exists('model.joblib'):
         df = load_data(csv_file_path)
         if df is not None:
-            X, Y = preprocess_data(df)
-            dump(train_model(X, Y), 'model.joblib')
+            messages, categories = preprocess_data(df)
+            dump(train_model(messages, categories), 'model.joblib')
         else:
             print("Error loading data")
     else:
         print("Model already exists")
-    return load('model.joblib')
+    return dump('model.joblib')
 
 
 def just_create_model():
     model = create_model(csv_file_path)
     print("Model created successfully" if model else "Error creating model")
-
-
-def just_create_model():
-    model = create_model(csv_file_path)
-    print("Model created successfully" if model else "Error creating model")
-
 
 def main():
     just_create_model()
