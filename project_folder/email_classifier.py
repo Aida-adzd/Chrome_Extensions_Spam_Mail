@@ -1,84 +1,69 @@
-import numpy as np
+import os
 import pandas as pd
-from sklearn.model_selection import train_test_split
+from joblib import dump, load
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+csv_file_path = r"D:\Amir\Uni\osoltarahi_narmafzar\project\Chrome_Extensions_Spam_Mail\project_folder\mail_data.csv"
+
 
 def load_data(csv_file_path):
     try:
-        with open(csv_file_path, 'r', encoding='utf-8') as file:
-            df = pd.read_csv(file)
-        return df
+        return pd.read_csv(csv_file_path, encoding='utf-8')
     except FileNotFoundError:
         print("Error: CSV file not found")
-        return None
     except Exception as e:
         print(f"Error: An unexpected error occurred - {str(e)}")
-        return None
+
 
 def preprocess_data(df):
-    # Data cleaning and transformation
-    mail_data = df.fillna('')  # Replace NaN with empty string
-    mail_data['Category'] = mail_data['Category'].apply({'ham': 0, 'spam': 1}.get)
-    
-    # Split data into input (X) and output (Y)
-    X = mail_data['Message']
-    Y = mail_data['Category']
-    
-    return X, Y
+    df = df.fillna('')  # Replace NaN with empty string
+    df['Category'] = df['Category'].apply({'ham': 0, 'spam': 1}.get)
+    return df['Message'], df['Category']
+
 
 def train_model(X_train, Y_train):
-    # Feature extraction using TF-IDF
-    feature_extraction = TfidfVectorizer(min_df=1, stop_words='english', lowercase=True)
-    x_train_feature = feature_extraction.fit_transform(X_train)
-    
-    # Train the model
-    lrm = LogisticRegression()
-    lrm.fit(x_train_feature, Y_train)
-    
-    return lrm, feature_extraction
+    vectorizer = TfidfVectorizer(min_df=1, stop_words='english', lowercase=True)
+    x_train_transformed = vectorizer.fit_transform(X_train)
 
-def evaluate_model(model, X_test, Y_test):
-    # Use the model for predictions
-    x_test_feature = model[1].transform(X_test)
-    prediction_test = model[0].predict(x_test_feature)
-    
-    # Evaluate model performance
-    test_accuracy = accuracy_score(Y_test, prediction_test)
-    conf_matrix = confusion_matrix(Y_test, prediction_test)
-    class_report = classification_report(Y_test, prediction_test)
-    
-    return test_accuracy, conf_matrix, class_report
+    model = LogisticRegression()
+    model.fit(x_train_transformed, Y_train)
+
+    return model, vectorizer
+
 
 def classify_email(input_mail, model):
-    # Predict for the input email
-    input_data = model[1].transform([input_mail])  # Note: Passing a list with one element
+    input_data = model[1].transform([input_mail])
     prediction = model[0].predict(input_data)
-    
-    if prediction[0] == 0:
-        return "Ham mail"
+    return "Ham mail" if prediction[0] == 0 else "Spam mail"
+
+
+def create_model(csv_file_path):
+    if not os.path.exists('model.joblib'):
+        df = load_data(csv_file_path)
+        if df is not None:
+            X, Y = preprocess_data(df)
+            dump(train_model(X, Y), 'model.joblib')
+        else:
+            print("Error loading data")
     else:
-        return "Spam mail"
+        print("Model already exists")
+    return load('model.joblib')
 
-def get_text(text):
-    csv_file_path = r"/Users/aidaz/Desktop/Spam_or_Ham/project_folder/mail_data.csv"
-    df = load_data(csv_file_path)
-    if df is not None:
-        X, Y = preprocess_data(df)
-        X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=3)
-        model = train_model(X_train, Y_train)
-        test_accuracy, conf_matrix, class_report = evaluate_model(model , X_test , Y_test)
-        result = classify_email(text, model)
-        return result
 
-def  main():
-    text = input("text:")
-    result = get_text(text)
-    print(result)
-    
+def just_create_model():
+    model = create_model(csv_file_path)
+    print("Model created successfully" if model else "Error creating model")
+
+
+def just_create_model():
+    model = create_model(csv_file_path)
+    print("Model created successfully" if model else "Error creating model")
+
+
+def main():
+    just_create_model()
+
+
 if __name__ == "__main__":
     main()
-    
-    
-    
