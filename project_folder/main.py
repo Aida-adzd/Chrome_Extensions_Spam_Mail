@@ -1,23 +1,17 @@
 from joblib import load
-
-
+import os
+from email_classifier import just_create_model
 def load_model():
-    # Load the model from the file
-    model, feature_extraction = load('model.joblib')
-    return model, feature_extraction
+    if 'model.joblib' not in os.listdir():
+        just_create_model()
+    return load('model.joblib')
 
-
-def resualt(text):
+def classify_text(text):
     model = load_model()
-    input_data = model[1].transform([text])
-    prediction = model[0].predict(input_data)
-
-    if prediction[0] == 0:
-        return "Ham mail"
-    else:
-        return "Spam mail"
+    input_data, prediction = model[1].transform([text]), model[0].predict(model[1].transform([text]))
+    return "Ham mail" if prediction[0] == 0 else "Spam mail"
 
 
 if __name__ == "__main__":
-    resualt(input("text:"))
+    print(classify_text(input("text:")))
 
