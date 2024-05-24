@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('emailForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    var emailText = document.getElementById('emailText').value;
+    const emailText = document.getElementById('emailText').value;
 
     fetch('http://127.0.0.1:5000/classify', {
       method: 'POST',
@@ -16,4 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .catch(error => console.error('Error:', error));
   });
+});
+document.getElementById('darkModeSwitch').addEventListener('change', function() {
+  document.body.classList.toggle('dark-mode');
+  document.querySelector('textarea').classList.toggle('dark-mode');
 });
