@@ -1,36 +1,45 @@
-    body {
-      font-family: Arial, sans-serif;
-      margin: 10px;
-    }
-    h2 {
-      margin-bottom: 20px;
-    }
-    textarea {
-      width: 250px;
-      height: 100px;
-      margin-bottom: 10px;
-    }
-    button {
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        cursor: pointer;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    p {
-      margin-top: 20px;
-    }
-    .switch {
-    position: fixed;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-    margin-left: 60px;
-    margin-top: 1px;
+body {
+  font-family: Arial, sans-serif;
+  margin: 10px;
+  background-color: #2e2e2e;
+  color: #ffffff;
+}
 
+h2 {
+  margin-bottom: 20px;
+}
+
+textarea {
+  width: 250px;
+  height: 100px;
+  margin-bottom: 10px;
+  background-color: #555555;
+  color: #ffffff;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+p {
+  margin-top: 20px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-left: 60px;
+  margin-top: 1px;
 }
 
 .switch input {
@@ -48,6 +57,9 @@
   bottom: 0;
   background-color: #ccc;
   transition: .4s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .slider:before {
@@ -70,17 +82,47 @@ input:checked + .slider:before {
 }
 
 .slider.round {
-  border-radius: 24px;
+  border-radius: 34px;
 }
 
 .slider.round:before {
   border-radius: 50%;
 }
-body.dark-mode {
-  background-color: #333;
+
+.slider i {
+  position: absolute;
+  font-size: 18px;
   color: #fff;
+  transition: opacity 0.4s;
 }
+
+.slider i.fa-sun {
+  left: 8px;
+  opacity: 1; /* Always show the sun icon */
+}
+
+.slider i.fa-moon {
+  right: 8px;
+  opacity: 1; /* Always show the moon icon */
+}
+body {
+  background-color: white;
+  color: black;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+body.dark-mode {
+  background-color: black;
+  color: white;
+}
+
+textarea {
+  background-color: white;
+  color: black;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
 textarea.dark-mode {
-  background-color: #333;
-  color: #fff;
+  background-color: black;
+  color: white;
 }

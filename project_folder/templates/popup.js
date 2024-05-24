@@ -16,8 +16,50 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .catch(error => console.error('Error:', error));
   });
+
+  const darkModeSwitch = document.getElementById('darkModeSwitch');
+
+  darkModeSwitch.addEventListener('change', function() {
+    document.body.classList.toggle('dark-mode');
+    document.querySelector('textarea').classList.toggle('dark-mode');
+  });
 });
-document.getElementById('darkModeSwitch').addEventListener('change', function() {
-  document.body.classList.toggle('dark-mode');
-  document.querySelector('textarea').classList.toggle('dark-mode');
+const translations = {
+  en: {
+    title: "Spam Email Classifier",
+    placeholder: "Enter email text here",
+    button: "Classify Email"
+  },
+  es: {
+    title: "Clasificador de Correos Electrónicos no Deseados",
+    placeholder: "Ingrese el texto del correo electrónico aquí",
+    button: "Clasificar correo electrónico"
+  },
+  fa: {
+    title: "طبقه بندی ایمیل هرزنامه",
+    placeholder: "متن ایمیل را در اینجا وارد کنید",
+    button: "طبقه بندی ایمیل"
+  },
+  fr: {
+    title: "Classificateur d'emails indésirables",
+    placeholder: "Entrez le texte de l'email ici",
+    button: "Classer l'email"
+  },
+  it: {
+    title: "Classificatore di email spam",
+    placeholder: "Inserisci qui il testo dell'email",
+    button: "Classifica email"
+  },
+  ar: {
+    title: "مصنف البريد الإلكتروني غير المرغوب فيه",
+    placeholder: "أدخل نص البريد الإلكتروني هنا",
+    button: "تصنيف البريد الإلكتروني"
+  }
+};
+
+document.getElementById('languageSelect').addEventListener('change', function() {
+  const language = this.value;
+  document.querySelector('h2').textContent = translations[language].title;
+  document.getElementById('emailText').placeholder = translations[language].placeholder;
+  document.querySelector('button').textContent = translations[language].button;
 });
