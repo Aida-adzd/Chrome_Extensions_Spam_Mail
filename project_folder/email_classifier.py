@@ -4,7 +4,7 @@ from joblib import dump, load
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 
-csv_file_path = r"D:\Amir\Uni\osoltarahi_narmafzar\project\Chrome_Extensions_Spam_Mail\project_folder\mail_data.csv"
+csv_file_path = r"D:\Amir\Uni\osoltarahi_narmafzar\project\AmirBasutiFork\Chrome_Extensions_Spam_Mail\project_folder\final.csv"
 
 
 def load_data(csv_file_path):
@@ -18,7 +18,7 @@ def load_data(csv_file_path):
 
 def preprocess_data(df):
     df = df.fillna('')  # Replace NaN with empty string
-    df['Category'] = df['Category'].apply({'ham': 0, 'spam': 1}.get)
+    # df['Category'] = df['Category'].apply({'ham': 0, 'spam': 1}.get)
     return df['Message'], df['Category']
 
 
