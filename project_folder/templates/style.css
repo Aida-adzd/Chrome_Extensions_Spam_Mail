@@ -1,45 +1,83 @@
 body {
+  margin: 0;
+  padding: 0;
   font-family: Arial, sans-serif;
-  margin: 10px;
-  background-color: #2e2e2e;
-  color: #ffffff;
+  background-color: #f0f0f0; /* Default background color */
 }
 
-h2 {
-  margin-bottom: 20px;
+/* Email form */
+#emailForm {
+  width: 300px;
+  margin: 20px auto;
+  background-color: #fff; /* Default background color */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.5s ease, color 0.5s ease; /* Added transition for smooth color change */
 }
 
-textarea {
-  width: 250px;
-  height: 100px;
-  margin-bottom: 10px;
-  background-color: #555555;
-  color: #ffffff;
+/* Dark mode adjustments */
+body.dark-mode #emailForm {
+  background-color: #333; /* Dark background color */
+  color: #fff; /* Light text color */
 }
+
+/* Email text textarea */
+#emailText {
+  width: 100%;
+  max-width: 600px; /* You can adjust this value as needed */
+  padding: 10px;
+  margin: 0 auto; /* This will center the element */
+  border: 1px solid #CCCCCC;
+  border-radius: 5px;
+  background-color: #ffffff; /* White background */
+  color: #333333; /* Dark text color */
+  font-size: 16px; /* Adjust font size as needed */
+  transition: background-color 0.5s ease, color 0.5s ease; /* Added transition for smooth color change */
+}
+
+#emailText::placeholder {
+  color: #999999; /* Lighter text color for placeholder */
+}
+
+/* Dark mode adjustments */
+body.dark-mode #emailText {
+  background-color: #333; /* Dark background color */
+  color: #fff; /* Light text color */
+}
+
 
 button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
+  width: 100%;
+  padding: 10px;
+  background-color: #0078d4; /* Default button color */
+  color: #fff;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #005a9e; /* Button color on hover */
 }
 
-p {
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-top: 20px;
 }
 
+#languageSelect {
+  width: 150px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
 .switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-  margin-left: 60px;
-  margin-top: 1px;
+  display: flex;
+  align-items: center;
 }
 
 .switch input {
@@ -49,17 +87,16 @@ p {
 }
 
 .slider {
-  position: absolute;
+  position: relative;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  width: 60px;
+  height: 34px;
   background-color: #ccc;
   transition: .4s;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 10px;
 }
 
 .slider:before {
@@ -71,6 +108,7 @@ p {
   bottom: 4px;
   background-color: white;
   transition: .4s;
+  border-radius: 50%;
 }
 
 input:checked + .slider {
@@ -105,9 +143,9 @@ input:checked + .slider:before {
   right: 8px;
   opacity: 1; /* Always show the moon icon */
 }
+
+/* Dark mode transition */
 body {
-  background-color: white;
-  color: black;
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 
@@ -117,8 +155,6 @@ body.dark-mode {
 }
 
 textarea {
-  background-color: white;
-  color: black;
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 
@@ -126,3 +162,48 @@ textarea.dark-mode {
   background-color: black;
   color: white;
 }
+
+#emailText {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #CCCCCC;
+  border-radius: 5px;
+  background-color: #ffffff; /* White background */
+  color: #333333; /* Dark text color */
+  font-size: 16px; /* Adjust font size as needed */
+}
+
+#emailText::placeholder {
+  color: #999999; /* Lighter text color for placeholder */
+}
+/* Corrected size and style of language select bar */
+#languageSelect {
+  width: 100%; /* Adjusted width to fill the container */
+  padding: 10px; /* Increased padding for better spacing */
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff; /* Default background color */
+  color: #333; /* Adjusted text color */
+  font-size: 16px; /* Adjusted font size */
+  transition: background-color 0.5s ease, color 0.5s ease; /* Added transition for smooth color change */
+}
+
+/* Adjusted color of language select options */
+#languageSelect option {
+  background-color: #fff; /* Default background color */
+  color: #333; /* Adjusted text color */
+}
+
+/* Dark mode adjustments */
+body.dark-mode #languageSelect {
+  background-color: #333; /* Dark background color */
+  color: #fff; /* Light text color */
+  border-color: #999; /* Darker border color */
+}
+
+body.dark-mode #languageSelect option {
+  background-color: #333; /* Dark background color */
+  color: #fff; /* Light text color */
+}
+
