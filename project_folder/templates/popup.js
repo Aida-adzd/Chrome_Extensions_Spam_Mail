@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (emailText === '') {
       // Display empty input message if input is empty
       document.getElementById('emptyInputMessage').style.display = 'block';
+      // Clear previous result
+      document.getElementById('result').textContent = '';
       return; // Stop further execution
     } else {
       // Hide empty input message if input is not empty
@@ -22,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .then(response => response.json())
     .then(data => {
-      document.getElementById('result').textContent = data.result;
+      document.getElementById('result').textContent = "Result: " + data.result;
     })
     .catch(error => console.error('Error:', error));
   });
@@ -74,5 +76,11 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('h3').textContent = translations[language].title;
     document.getElementById('emailText').placeholder = translations[language].placeholder;
     document.querySelector('button').textContent = translations[language].button;
+  });
+
+  // Function to handle clearing result when input field is clicked
+  document.getElementById('emailText').addEventListener('click', function() {
+    // Clear previous result
+    document.getElementById('result').textContent = '';
   });
 });

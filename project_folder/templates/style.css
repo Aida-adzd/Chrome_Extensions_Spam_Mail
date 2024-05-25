@@ -1,13 +1,23 @@
 body {
+  width: 450px;
+  height: 200px;
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
   background-color: #f0f0f0; /* Default background color */
 }
+h3 {
+  font-weight: normal;
+  font-size: 20px;
+  padding-left: 10px;
+
+}
 
 /* Email form */
 #emailForm {
-  width: 300px;
+  width: 350px;
+  height: 100px;
+
   margin: 20px auto;
   background-color: #fff; /* Default background color */
   padding: 20px;
@@ -48,13 +58,13 @@ body.dark-mode #emailText {
 
 
 button {
-  width: 100%;
-  padding: 10px;
-  background-color: #0078d4; /* Default button color */
-  color: #fff;
+  width: 101%; /* Same as the input field */
+  padding: 10px; /* Same as the input field */
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  background-color: #0078d4; /* Default button color */
+  color: #fff;
 }
 
 button:hover {
@@ -75,9 +85,14 @@ button:hover {
   border: 1px solid #ccc;
 }
 
+.title-container {
+  position: relative;
+}
+
 .switch {
-  display: flex;
-  align-items: center;
+  position: absolute;
+  top: -20px;
+  right: 10px;
 }
 
 .switch input {
@@ -150,7 +165,7 @@ body {
 }
 
 body.dark-mode {
-  background-color: black;
+  background-color: #2b2b2b;
   color: white;
 }
 
@@ -164,7 +179,7 @@ textarea.dark-mode {
 }
 
 #emailText {
-  width: 100%;
+  width: 95%;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #CCCCCC;
@@ -179,9 +194,10 @@ textarea.dark-mode {
 }
 /* Corrected size and style of language select bar */
 #languageSelect {
-  width: 100%; /* Adjusted width to fill the container */
+  width: 101%; /* Adjusted width to fill the container */
+  height: 40px;
   padding: 10px; /* Increased padding for better spacing */
-  border-radius: 5px;
+  /*border-radius: 1px;*/
   border: 1px solid #ccc;
   background-color: #fff; /* Default background color */
   color: #333; /* Adjusted text color */
@@ -205,5 +221,36 @@ body.dark-mode #languageSelect {
 body.dark-mode #languageSelect option {
   background-color: #333; /* Dark background color */
   color: #fff; /* Light text color */
+}
+/*@keyframes example {*/
+/*  0%   {transform: scale(1);}*/
+/*  50%  {transform: scale(1.1);}*/
+/*  100% {transform: scale(1);}*/
+/*}*/
+/*#emailText, #emailForm button {*/
+/*  animation-name: example;*/
+/*  animation-duration: 2s;*/
+/*  animation-iteration-count: infinite;*/
+/*}*/
+/* style.css */
+
+/* style.css */
+
+.title-container {
+  position: relative;
+}
+
+.switch {
+  position: absolute;
+  top: -20px;
+  right: 10px;
+}
+
+#result {
+  margin-top: 9px; /* Add some space above the result */
+  font-size: 15px; /* Increase the font size */
+  font-weight: normal;
+  font-family: Arial, sans-serif;
+
 }
 
