@@ -84,3 +84,19 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('result').textContent = '';
   });
 });
+// Get the input box element
+const emailText = document.getElementById('emailText');
+
+// Add event listener for 'focus' event
+emailText.addEventListener('focus', function() {
+  // Add the focused class when the input box is clicked
+  this.classList.add('focused');
+  this.classList.remove('normal');
+});
+
+// Add event listener for 'blur' event
+emailText.addEventListener('blur', function() {
+  // Add the normal class when the input box loses focus
+  this.classList.add('normal');
+  this.classList.remove('focused');
+});
