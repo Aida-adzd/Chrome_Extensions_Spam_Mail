@@ -1,13 +1,11 @@
 import os
-from time import sleep
 from pandas import read_csv
 from joblib import dump, load
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
-from classifier import Classifier
 
 
-class EmailClassifier(Classifier):
+class EmailClassifier:
     def __init__(self, model_path: str, csv_file_path: str):
         self.model_path = model_path
         self.csv_file_path = csv_file_path
@@ -15,6 +13,7 @@ class EmailClassifier(Classifier):
         if self.model is None:
             print("Model is not loaded. Creating model soon...")
             self.create_model()
+
     def load_data(self):
         try:
             return read_csv(self.csv_file_path, encoding='utf-8')
@@ -22,11 +21,6 @@ class EmailClassifier(Classifier):
             print("Error: CSV file not found")
         except Exception as e:
             print(f"Error: An unexpected error occurred - {str(e)}")
-
-    @staticmethod
-    def preprocess_data(df):
-        df = df.fillna('')  # Replace NaN with empty string
-        return df['Message'], df['Category']
 
     @staticmethod
     def train_model(messages, categories):
@@ -41,10 +35,8 @@ class EmailClassifier(Classifier):
     def create_model(self):
         if not os.path.exists(self.model_path):
             df = self.load_data()
-            # print(df)
             if df is not None:
-                messages, categories = self.preprocess_data(df)
-                dump(self.train_model(messages, categories), self.model_path)
+                dump(self.train_model(df['Message'], df['Category']), self.model_path)
                 return "Model created successfully"
             else:
                 return "Error loading data"
