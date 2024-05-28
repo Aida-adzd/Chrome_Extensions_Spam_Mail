@@ -32,6 +32,13 @@ body.dark-mode #emailForm {
   color: #fff; /* Light text color */
 }
 
+#emailText, button {
+  width: 80%; /* Adjust this value as needed */
+  margin: 0 auto; /* This will center the elements */
+  display: block; /* This will make the elements block-level, which is necessary for centering */
+}
+
+
 /* Email text textarea */
 #emailText {
   width: 100%;
@@ -253,4 +260,25 @@ body.dark-mode #languageSelect option {
   font-family: Arial, sans-serif;
 
 }
+/* Define the normal state */
+#emailText {
+  width: 100%;
+  border: 1px;
+  border-bottom: 1px solid #000;
+  transition: all 0.3s ease-in-out;
+}
 
+#emailText::placeholder {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Define the focused state */
+#emailText:focus {
+  outline: none;
+  border-bottom: 1px solid #0078d4;
+}
+
+#emailText:focus::placeholder {
+  transform: translateY(-20px);
+  font-size: 12px;
+}
