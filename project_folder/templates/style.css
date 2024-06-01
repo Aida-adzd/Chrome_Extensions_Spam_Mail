@@ -1,83 +1,87 @@
-body.myExtension{
+/* Main body style for the extension */
+body.myExtension {
   width: 450px;
   height: 200px;
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0; /* Default background color */
+  background-color: #f0f0f0;
 }
+
+/* Style for h3 headers */
 h3 {
   font-weight: normal;
   font-size: 20px;
   padding-left: 10px;
-
 }
 
-/* Email form */
+/* Style for the email form */
 #emailForm {
   width: 350px;
   height: 100px;
-
   margin: 20px auto;
-  background-color: #fff; /* Default background color */
+  background-color: #fff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.5s ease, color 0.5s ease; /* Added transition for smooth color change */
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-/* Dark mode adjustments */
+/* Style for the email form in dark mode */
 body.dark-mode #emailForm {
-  background-color: #333; /* Dark background color */
-  color: #fff; /* Light text color */
-}
-
-#emailText, button {
-  width: 80%; /* Adjust this value as needed */
-  margin: 0 auto; /* This will center the elements */
-  display: block; /* This will make the elements block-level, which is necessary for centering */
-}
-
-
-/* Email text textarea */
-#emailText {
-  width: 100%;
-  max-width: 600px; /* You can adjust this value as needed */
-  padding: 10px;
-  margin: 0 auto; /* This will center the element */
-  border: 1px solid #CCCCCC;
-  border-radius: 5px;
-  background-color: #ffffff; /* White background */
-  color: #333333; /* Dark text color */
-  font-size: 16px; /* Adjust font size as needed */
-  transition: background-color 0.5s ease, color 0.5s ease; /* Added transition for smooth color change */
-}
-
-#emailText::placeholder {
-  color: #999999; /* Lighter text color for placeholder */
-}
-
-/* Dark mode adjustments */
-body.dark-mode #emailText {
-  background-color: #333; /* Dark background color */
-  color: #fff; /* Light text color */
-}
-
-
-button {
-  width: 101%; /* Same as the input field */
-  padding: 10px; /* Same as the input field */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #0078d4; /* Default button color */
+  background-color: #333;
   color: #fff;
 }
 
-button:hover {
-  background-color: #005a9e; /* Button color on hover */
+/* Style for email text and button */
+#emailText, button {
+  width: 80%;
+  margin: 0 auto;
+  display: block;
 }
 
+/* Style for email text */
+#emailText {
+  width: 100%;
+  max-width: 600px;
+  padding: 10px;
+  margin: 0 auto;
+  border: 1px solid #CCCCCC;
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: #333333;
+  font-size: 16px;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Style for email text placeholder */
+#emailText::placeholder {
+  color: #999999;
+}
+
+/* Style for email text in dark mode */
+body.dark-mode #emailText {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Style for button */
+button {
+  width: 101%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #0078d4;
+  color: #fff;
+}
+
+/* Style for button hover state */
+button:hover {
+  background-color: #005a9e;
+}
+
+/* Style for controls */
 .controls {
   display: flex;
   align-items: center;
@@ -85,6 +89,7 @@ button:hover {
   margin-top: 20px;
 }
 
+/* Style for language select */
 #languageSelect {
   width: 150px;
   padding: 8px;
@@ -92,22 +97,26 @@ button:hover {
   border: 1px solid #ccc;
 }
 
+/* Style for title container */
 .title-container {
   position: relative;
 }
 
+/* Style for switch */
 .switch {
   position: absolute;
   top: -20px;
   right: 10px;
 }
 
+/* Style for switch input */
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
+/* Style for slider */
 .slider {
   position: relative;
   cursor: pointer;
@@ -121,6 +130,7 @@ button:hover {
   margin-left: 10px;
 }
 
+/* Style for slider before state */
 .slider:before {
   position: absolute;
   content: "";
@@ -133,22 +143,27 @@ button:hover {
   border-radius: 50%;
 }
 
+/* Style for slider when input is checked */
 input:checked + .slider {
   background-color: #2196F3;
 }
 
+/* Style for slider before state when input is checked */
 input:checked + .slider:before {
   transform: translateX(26px);
 }
 
+/* Style for round slider */
 .slider.round {
   border-radius: 34px;
 }
 
+/* Style for round slider before state */
 .slider.round:before {
   border-radius: 50%;
 }
 
+/* Style for slider icons */
 .slider i {
   position: absolute;
   font-size: 18px;
@@ -156,129 +171,130 @@ input:checked + .slider:before {
   transition: opacity 0.4s;
 }
 
+/* Style for sun icon in slider */
 .slider i.fa-sun {
   left: 8px;
-  opacity: 1; /* Always show the sun icon */
+  opacity: 1;
 }
 
+/* Style for moon icon in slider */
 .slider i.fa-moon {
   right: 8px;
-  opacity: 1; /* Always show the moon icon */
+  opacity: 1;
 }
 
-/* Dark mode transition */
+/* Style for body transition */
 body {
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 
+/* Style for body in dark mode */
 body.dark-mode {
   background-color: #2b2b2b;
   color: white;
 }
 
+/* Style for textarea transition */
 textarea {
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 
+/* Style for textarea in dark mode */
 textarea.dark-mode {
   background-color: black;
   color: white;
 }
 
+/* Style for email text */
 #emailText {
   width: 95%;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #CCCCCC;
   border-radius: 5px;
-  background-color: #ffffff; /* White background */
-  color: #333333; /* Dark text color */
-  font-size: 16px; /* Adjust font size as needed */
+  background-color: #ffffff;
+  color: #333333;
+  font-size: 16px;
 }
 
+/* Style for email text placeholder */
 #emailText::placeholder {
-  color: #999999; /* Lighter text color for placeholder */
+  color: #999999;
 }
-/* Corrected size and style of language select bar */
+
+/* Style for language select */
 #languageSelect {
-  width: 101%; /* Adjusted width to fill the container */
+  width: 101%;
   height: 40px;
-  padding: 10px; /* Increased padding for better spacing */
-  /*border-radius: 1px;*/
+  padding: 10px;
   border: 1px solid #ccc;
-  background-color: #fff; /* Default background color */
-  color: #333; /* Adjusted text color */
-  font-size: 16px; /* Adjusted font size */
-  transition: background-color 0.5s ease, color 0.5s ease; /* Added transition for smooth color change */
+  background-color: #fff;
+  color: #333;
+  font-size: 16px;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-/* Adjusted color of language select options */
+/* Style for language select options */
 #languageSelect option {
-  background-color: #fff; /* Default background color */
-  color: #333; /* Adjusted text color */
+  background-color: #fff;
+  color: #333;
 }
 
-/* Dark mode adjustments */
+/* Style for language select in dark mode */
 body.dark-mode #languageSelect {
-  background-color: #333; /* Dark background color */
-  color: #fff; /* Light text color */
-  border-color: #999; /* Darker border color */
+  background-color: #333;
+  color: #fff;
+  border-color: #999;
 }
 
+/* Style for language select options in dark mode */
 body.dark-mode #languageSelect option {
-  background-color: #333; /* Dark background color */
-  color: #fff; /* Light text color */
+  background-color: #333;
+  color: #fff;
 }
-/*@keyframes example {*/
-/*  0%   {transform: scale(1);}*/
-/*  50%  {transform: scale(1.1);}*/
-/*  100% {transform: scale(1);}*/
-/*}*/
-/*#emailText, #emailForm button {*/
-/*  animation-name: example;*/
-/*  animation-duration: 2s;*/
-/*  animation-iteration-count: infinite;*/
-/*}*/
-/* style.css */
 
-/* style.css */
-
+/* Style for title container */
 .title-container {
   position: relative;
 }
 
+/* Style for switch */
 .switch {
   position: absolute;
   top: -20px;
   right: 10px;
 }
 
+/* Style for result */
 #result {
-  margin-top: 9px; /* Add some space above the result */
-  font-size: 15px; /* Increase the font size */
+  margin-top: 9px;
+  font-size: 15px;
   font-weight: normal;
   font-family: Arial, sans-serif;
-
 }
-/* Define the normal state */
+
+/* Style for email text */
 #emailText {
   width: 100%;
-  border: 1px;
-  border-bottom: 1px solid #000;
+  border: none;
   transition: all 0.3s ease-in-out;
+  color: #000;
 }
 
+/* Style for email text placeholder */
 #emailText::placeholder {
   transition: all 0.3s ease-in-out;
+  color: #999;
 }
 
-/* Define the focused state */
+/* Style for email text focus state */
 #emailText:focus {
   outline: none;
-  border-bottom: 1px solid #0078d4;
+  border: none;
 }
 
+/* Style for email text placeholder in focus state */
 #emailText:focus::placeholder {
-  transform: translateY(-20px);
+  transform: translateY(-10px);
   font-size: 12px;
 }
