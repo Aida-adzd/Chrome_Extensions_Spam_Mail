@@ -4,6 +4,8 @@ from pandas import read_csv
 from joblib import dump, load
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 from typing import Tuple, Optional
 
 # Constants
@@ -77,3 +79,26 @@ class EmailClassifier:
         input_data = self.vectorizer.transform([text])
         prediction = self.model.predict(input_data)
         return "Ham mail" if prediction[0] == 0 else "Spam mail"
+
+    def calculate_accuracy(self) -> float:
+        """Calculate the accuracy of the model."""
+        df = self.load_data()
+        if df is not None:
+            # Split the data into a training set and a test set
+            messages_train, messages_test, categories_train, categories_test = train_test_split(
+                df['Message'], df['Category'], test_size=0.2, random_state=42)
+
+            # Train the model on the training set
+            model, vectorizer = self.train_model(messages_train, categories_train)
+
+            # Use the model to make predictions on the test set
+            messages_test_transformed = vectorizer.transform(messages_test)
+            predictions = model.predict(messages_test_transformed)
+
+            # Calculate the accuracy of the model
+            accuracy = accuracy_score(categories_test, predictions)
+            return accuracy
+
+        raise Exception(ERROR_CREATING_MODEL)
+
+
